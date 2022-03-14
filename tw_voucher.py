@@ -25,4 +25,4 @@ def voucher(v:str,num:str):
     return {"succes": False,"msg":o['status']['code']}
 
 if __name__ == "__main__":
-    print(voucher("test","0123456789"))
+    print(voucher("testtesttesttestte","0123456789"))
