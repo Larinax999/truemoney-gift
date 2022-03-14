@@ -1,6 +1,6 @@
 # truemoney-gift
 
-just random ja3 :)
+just random ja3 (tls fingerprinting) :)
 
 # Installation
 ```python
