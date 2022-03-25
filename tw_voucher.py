@@ -4,14 +4,11 @@ import ssl
 
 class SSLFactory:
     def __init__(self):
-        self.ciphers = 'ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+HIGH:DH+HIGH:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+HIGH:RSA+3DES'.split(":")
- 
+        self.ciphers = "ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:ECDH+HIGH:DH+HIGH:ECDH+3DES:DH+3DES:RSA+AESGCM:RSA+AES:RSA+HIGH:RSA+3DES".split(":")
     def __call__(self) -> ssl.SSLContext:
         shuffle(self.ciphers)
-        ciphers = ":".join(self.ciphers)
-        ciphers = ciphers + ":!aNULL:!eNULL:!MD5"
         context = ssl.create_default_context()
-        context.set_ciphers(ciphers)
+        context.set_ciphers(f"{':'.join(self.ciphers)}:!aNULL:!eNULL:!MD5")
         return context
 
 sess = Client(verify=SSLFactory()(),headers={"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 Edg/92.0.902.67"})
